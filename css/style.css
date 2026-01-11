@@ -1,0 +1,492 @@
+:root {
+    --primary: #5271FF;
+    --primary-glow: rgba(82, 113, 255, 0.6);
+    --accent: #00F0FF;
+    --gold: #FFD700;
+    --bg-deep: #0D0F1C;
+    --text-main: #FFFFFF;
+    --text-sub: #8B9BB4;
+    --border-radius: 6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding-bottom: 100px;
+}
+
+.app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background: rgba(13, 15, 28, 0.9);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.brand-sub {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.user-info-group {
+    display: flex;
+    gap: 8px;
+}
+
+.info-badge {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 6px 12px;
+    border-radius: var(--border-radius);
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.points-badge {
+    color: #FFD700;
+}
+
+.balance-badge {
+    color: var(--accent);
+}
+
+/* Main Content */
+.main-content {
+    padding: 16px;
+}
+
+/* 合并产品展示和能量充值 */
+.product-recharge-card {
+    background: rgba(30, 35, 60, 0.7);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.product-image-container {
+    width: 120px;
+    height: auto;
+    min-height: 120px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-recharge-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-title {
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.price-tag {
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+/* Recharge Section */
+.recharge-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+}
+
+.card-header-inline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.card-title-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-icon {
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.recharge-input-inline {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(82, 113, 255, 0.3);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    width: 120px;
+    height: 32px;
+    padding: 0 8px;
+}
+
+.amount-input-inline {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+    text-align: right;
+    font-weight: 700;
+}
+
+.pay-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-pay {
+    width: 100%;
+    padding: 6px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+    height: 32px;
+}
+
+.btn-wechat {
+    background: #05C160;
+    box-shadow: 0 4px 12px rgba(5, 193, 96, 0.3);
+}
+
+.btn-alipay {
+    background: #1677FF;
+    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+}
+
+/* Game Grid */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.section-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.stat-lbl {
+    color: var(--text-sub);
+}
+
+.stat-val {
+    font-weight: 800;
+    min-width: 20px;
+    text-align: center;
+}
+
+.stat-selected .stat-val {
+    color: var(--accent);
+}
+
+.stat-remaining .stat-val {
+    color: var(--gold);
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.grid-cell {
+    aspect-ratio: 1;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.grid-cell.selected {
+    background: var(--primary);
+    color: transparent;
+    box-shadow: 0 0 15px var(--primary-glow);
+    transform: scale(0.95);
+}
+
+.grid-cell.selected::after {
+    content: '\f023';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Footer */
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(13, 15, 28, 0.9);
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart-total {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-price {
+    color: var(--gold);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+/* Action Buttons */
+.btn-action {
+    flex: 1;
+    padding: 14px;
+    border-radius: var(--border-radius);
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-original {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-koko {
+    background: linear-gradient(90deg, #5271FF 0%, #00F0FF 100%);
+}
+
+.btn-koko:disabled {
+    background: #2A2A40;
+    color: #555;
+    cursor: not-allowed;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1A1D2E;
+    width: 90%;
+    max-width: 400px;
+    border-radius: var(--border-radius);
+    padding: 24px;
+}
+
+.modal-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.lucky-ball {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--bg-deep);
+    border: 4px solid var(--accent);
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+}
+
+.lucky-ball.winner {
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+    animation: pulse-gold 1s infinite alternate;
+}
+
+@keyframes pulse-gold {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* Registration Modal */
+.reg-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.form-dark {
+    padding: 20px 0;
+}
+
+.form-label {
+    color: var(--text-sub);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.form-dark input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 14px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 16px;
+    outline: none;
+}
+
+.form-dark input:focus {
+    border-color: var(--accent);
+    background: rgba(0, 240, 255, 0.05);
+}
+
+.toast {
+    background: rgba(82, 113, 255, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -20px);
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}

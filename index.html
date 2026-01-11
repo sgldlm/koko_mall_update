@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KOKO 幸运购</title>
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0D0F1C">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <span>KOKO</span>
+                <span class="brand-sub" style="font-style: italic;">Mall</span>
+            </div>
+            <div class="user-info-group">
+                <div class="info-badge points-badge">
+                    <i class="fas fa-star"></i>
+                    <span id="header-points">0</span>
+                </div>
+                <div class="info-badge balance-badge">
+                    <i class="fas fa-coins"></i>
+                    <span id="header-balance">¥0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 合并的产品展示和能量充值 -->
+            <div class="product-recharge-card">
+                <div class="product-image-container">
+                    <!-- 产品图片占位区 -->
+                    <div
+                        style="width:100%;height:100%;background:#333;display:flex;align-items:center;justify-content:center;">
+                        <i class="fas fa-image" style="color:rgba(255,255,255,0.2);font-size:2rem;"></i>
+                    </div>
+                </div>
+                <div class="product-recharge-content">
+                    <div class="product-info">
+                        <div class="product-title">CyberWatch Series X</div>
+                        <div class="price-tag">¥640</div>
+                    </div>
+                    <div class="recharge-section">
+                        <div class="card-header-inline">
+                            <div class="card-title-group">
+                                <i class="fas fa-bolt card-icon"></i>
+                                <span class="card-title">能量充值</span>
+                            </div>
+                            <div class="recharge-input-inline">
+                                <span style="color:var(--primary);font-weight:700;margin-right:4px">¥</span>
+                                <input type="number" id="recharge-input" class="amount-input-inline" placeholder="金额">
+                            </div>
+                        </div>
+                        <div class="pay-row">
+                            <button class="btn-pay btn-wechat" onclick="handleRecharge('wechat')">
+                                <i class="fab fa-weixin"></i> 微信
+                            </button>
+                            <button class="btn-pay btn-alipay" onclick="handleRecharge('alipay')">
+                                <i class="fab fa-alipay"></i> 支付宝
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Grid -->
+            <div class="section-header">
+                <div>
+                    <span class="section-name">选择幸运号码</span>
+                    <span class="section-name"
+                        style="margin-left:8px; font-weight:400; font-size: 0.85rem; color:var(--text-sub)">(总需支付: <span
+                            id="header-total" style="color:var(--gold); font-weight:700">¥0</span>)</span>
+                </div>
+                <div class="section-stats">
+                    <div class="stat-item stat-selected">
+                        <span class="stat-lbl">已选份额</span>
+                        <span class="stat-val" id="stat-selected">0</span>
+                    </div>
+                    <div class="stat-item stat-remaining">
+                        <span class="stat-lbl">剩余机会</span>
+                        <span class="stat-val" id="stat-remaining">64</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-grid" id="grid-root"></div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons-container" style="display:flex; gap:12px; margin-top:20px; padding-bottom:30px;">
+                <button class="btn-action btn-original" onclick="buyOriginal()">
+                    原价购买
+                </button>
+                <button class="btn-action btn-koko" id="btn-koko-pay" onclick="handleKokoPay()" disabled>
+                    KOKO支付
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <div class="modal-title">幸运购</div>
+            <div id="step-draw" style="text-align:center; padding: 20px 0;">
+                <div class="lucky-ball" id="lucky-ball">?</div>
+                <h2 style="color:white; margin-bottom:8px" id="draw-status">正在匹配中...</h2>
+                <button class="btn-checkout" style="width:100%; border-radius:6px; margin-top:20px; display:none"
+                    id="btn-finish" onclick="resetGame()">继续游戏</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal reg-modal" id="reg-modal">
+        <div class="modal-content">
+            <div class="modal-title">新用户注册</div>
+            <div class="form-dark">
+                <label class="form-label">姓名</label>
+                <input type="text" id="reg-name" placeholder="请输入真实姓名">
+
+                <label class="form-label">手机号码</label>
+                <input type="tel" id="reg-phone" placeholder="请输入手机号码">
+
+                <label class="form-label">E-mail</label>
+                <input type="email" id="reg-email" placeholder="请输入电子邮箱">
+
+                <button class="btn-checkout" style="width:100%; border-radius:6px; margin-top:20px"
+                    onclick="submitRegistration()">立即注册</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+{
+    "name": "KOKO 幸运购",
+    "short_name": "KOKO 幸运购",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0D0F1C",
+    "theme_color": "#0D0F1C",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "192x192 512x512",
+            "type": "image/png"
+        }
+    ]
+}
